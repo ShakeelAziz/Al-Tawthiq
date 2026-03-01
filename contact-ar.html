@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="__variable_6bee3b lenis lenis-smooth" dir="ltr">
+<html lang="ar" dir="rtl" class="__variable_6bee3b lenis lenis-smooth">
 
 <head>
   <meta charset="UTF-8" />
-  <title>Book a Demo | Al Tawthiq</title>
+  <title>حجز عرض تجريبي | التوثيق</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Fonts (same as site) -->
@@ -70,6 +70,7 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text-dark);
+      text-align: right;
     }
 
     input,
@@ -81,6 +82,7 @@
       font-family: inherit;
       transition: border 0.2s, box-shadow 0.2s;
       background: var(--white);
+      direction: rtl;
     }
 
     input:focus,
@@ -141,16 +143,16 @@
       <!-- NAVBAR -->
       <nav id="navbar">
         <div class="container">
-          <a href="index.html" class="logo">
-            <img src="assets/logo_png.png" alt="Al Tawthiq">
+          <a href="home-ar.html" class="logo">
+            <img src="assets/logo_png.png" alt="التوثيق">
           </a>
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home-ar.html">الرئيسية</a></li>
           </ul>
 
 
-          <a href="index.html" class="logo">
-            <img src="assets/white__logo.png" alt="Al Tawthiq">
+          <a href="home-en.html" class="logo">
+            <img src="assets/white__logo.png" alt="التوثيق">
           </a>
         </div>
       </nav>
@@ -159,32 +161,32 @@
         <div class="container">
           <div class="contact-card" data-aos="fade-up">
 
-            <h1>Book a Demo</h1>
-            <p>Tell us a bit about your organization and we’ll schedule a demo that fits your needs.</p>
+            <h1>حجز عرض تجريبي</h1>
+            <p>أخبرنا قليلاً عن مؤسستك وسنحدد موعدًا للعرض يناسب احتياجاتك.</p>
 
             <form>
 
               <div class="form-grid">
 
                 <div class="form-group">
-                  <label>Company Name</label>
-                  <input type="text" placeholder="Your company name" required>
+                  <label>اسم الشركة</label>
+                  <input type="text" placeholder="اسم شركتك" required>
                 </div>
 
                 <div class="form-group">
-                  <label>Email</label>
+                  <label>البريد الإلكتروني</label>
                   <input type="email" placeholder="company@email.com" required>
                 </div>
 
                 <div class="form-group">
-                  <label>City</label>
-                  <input type="text" placeholder="City" required>
+                  <label>المدينة</label>
+                  <input type="text" placeholder="المدينة" required>
                 </div>
 
                 <div class="form-group">
-                  <label>Number of Employees</label>
+                  <label>عدد الموظفين</label>
                   <select required>
-                    <option value="">Select range</option>
+                    <option value="">اختر النطاق</option>
                     <option>0 – 50</option>
                     <option>50 – 100</option>
                     <option>100 – 150</option>
@@ -194,27 +196,27 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Contact Person Name</label>
-                  <input type="text" placeholder="Full name" required>
+                  <label>اسم جهة الاتصال</label>
+                  <input type="text" placeholder="الاسم الكامل" required>
                 </div>
 
                 <div class="form-group">
-                  <label>Contact Person Phone</label>
+                  <label>هاتف جهة الاتصال</label>
                   <input type="tel" placeholder="+1 234 567 890" required>
                 </div>
 
                 <div class="form-group full">
-                  <label>Preferred Meeting Type</label>
+                  <label>نوع الاجتماع المفضل</label>
                   <select required>
-                    <option value="">Select meeting type</option>
-                    <option>In Person</option>
-                    <option>Office</option>
-                    <option>Zoom</option>
+                    <option value="">اختر نوع الاجتماع</option>
+                    <option>شخصيًا</option>
+                    <option>في المكتب</option>
+                    <option>زووم</option>
                   </select>
                 </div>
 
               </div>
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3" style="justify-content: flex-end;">
                 <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
                   class="flex h-4 w-4 rounded-sm border border-secondary-400 disabled:pointer-events-none disabled:opacity-50 data-[state=checked]:bg-green-500 data-[state=checked]:border-none focus:outline-none transition-all duration-300">
                 </button>
@@ -223,15 +225,15 @@
                   style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;"
                   tabindex="-1" value="on">
 
-                <p class="text-caption font-normal font-poppins">
-                  I agree to the
-                  <a href="/en/terms-of-use" class="underline">Terms of Service</a>
-                  and
-                  <a href="/en/privacy-policy" class="underline">Privacy Policy</a>
+                <p class="text-caption font-normal font-poppins" style="text-align: right;">
+                  أوافق على
+                  <a href="/ar/terms-of-use" class="underline">شروط الخدمة</a>
+                  و
+                  <a href="/ar/privacy-policy" class="underline">سياسة الخصوصية</a>
                 </p>
               </div>
               <div class="submit-wrap">
-                <button type="submit">Submit Request</button>
+                <button type="submit">إرسال الطلب</button>
               </div>
 
             </form>
