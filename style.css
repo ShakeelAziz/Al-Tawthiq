@@ -133,6 +133,7 @@ body {
 .nav-menu a {
   display: block;
   padding: 15px 20px;
+  font-size: 20px;
   color: #fff;
   text-decoration: none;
 }
@@ -156,10 +157,8 @@ body {
   display: block;
   background-color: var(--text-dark);
   min-width: 250px;
-
   list-style: none;
   padding: 10px;
-  ;
   margin: 0;
 
   z-index: 9999;
@@ -171,7 +170,7 @@ body {
 }
 
 .dropdown-content li a {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Show dropdown on hover */
@@ -217,10 +216,10 @@ nav ul {
 }
 
 nav a {
-  text-decoration: none;
+  text-decoration:none;
   color: var(--white);
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 18px;
   transition: color 0.2s;
 }
 
@@ -265,7 +264,7 @@ nav a:hover {
 .hero-title {
   font-size: 1.4rem;
   font-weight: 700;
-  padding-top: 10px;
+  padding-top: 40px;
   line-height: 1.5;
 }
 
@@ -316,7 +315,9 @@ nav a:hover {
   position: relative;
   min-height: 600px;
   display: flex;
-  max-height: 700px;
+  height: 100vh;
+  padding-top: 3  0px;
+  max-height: 800px;
   align-items: center;
   justify-content: center;
   background: url('assets/bg/bg6.jpg') center/cover no-repeat;
@@ -392,7 +393,7 @@ nav a:hover {
 .hero-section .yellow {
   font-size: 1.3rem;
   margin: 0 auto 40px;
-  color: rgba(250, 199, 46);
+  color: rgb(255, 255, 238);
 }
 
 [dir="ltr"] .hero-elements .el4 {
@@ -1409,28 +1410,7 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    min-height: 500px;
-  }
 
-  nav ul {
-    gap: 16px;
-  }
-
-  .hero-elements img {
-    max-width: 50px !important;
-  }
-
-  .value-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-}
 
 .logo-section {
   display: flex;
@@ -1815,6 +1795,7 @@ footer {
   text-align: center;
   margin-top: 80px; /* account for fixed header */
 }
+
 .hero h1 {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
