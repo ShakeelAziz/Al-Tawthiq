@@ -365,6 +365,7 @@ nav a:hover {
 }
 
 .hero-content .btn-demo {
+  margin-bottom:20px ;
   width: 220px;
 }
 
@@ -777,10 +778,13 @@ nav a:hover {
 }
 
 .achiev-section .section-header .subtitle {
-  font-size: 18px;
-  color: var(--text-muted);
+  font-size: clamp(16px, 2vw, 20px);
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  font-style: bold;
+  color: var(--black);
   max-width: 700px;
-  margin: 0 auto;
 }
 
 .achiev-grid {
@@ -1152,6 +1156,7 @@ nav a:hover {
 .partners-section {
   margin-top: 30px;
   overflow-x: hidden;
+
 }
 
 
@@ -1172,35 +1177,40 @@ nav a:hover {
   display: flex;
   gap: 36px;
   align-items: center;
+  animation-delay: 1s; /* wait before starting scroll */
 }
 
 /* RTL Animation (Arabic page) */
 html[dir="rtl"] .partners-track {
   animation: partners-scroll-rtl 30s linear infinite;
+  animation-delay: 1s;
 }
 
 /* LTR Animation (English page) */
 html[dir="ltr"] .partners-track {
   animation: partners-scroll-ltr 30s linear infinite;
+  animation-delay: 1s;
 }
 
 /* RTL: Move Right → Left */
+/* start fully visible at 0, then slide rightward */
 @keyframes partners-scroll-rtl {
-  from {
+  to {
     transform: translateX(0%);
   }
-  to {
-    transform: translateX(-150%);
+  from {
+    transform: translateX(50%);
   }
 }
 
 /* LTR: Move Left → Right */
+/* begin at 0 so logos all shown, then scroll leftward */
 @keyframes partners-scroll-ltr {
   from {
-    transform: translateX(-150%);
+    transform: translateX(0%);
   }
   to {
-    transform: translateX(0%);
+    transform: translateX(-50%);
   }
 }
 
