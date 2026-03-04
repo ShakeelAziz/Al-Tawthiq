@@ -164,7 +164,7 @@
             <h1>حجز عرض تجريبي</h1>
             <p>أخبرنا قليلاً عن مؤسستك وسنحدد موعدًا للعرض يناسب احتياجاتك.</p>
 
-            <form>
+            <form id="contactForm">
 
               <div class="form-grid">
 
@@ -196,41 +196,40 @@
                 </div>
 
                 <div class="form-group">
-                  <label>اسم جهة الاتصال</label>
+                  <label>اسم</label>
                   <input type="text" placeholder="الاسم الكامل" required>
                 </div>
 
                 <div class="form-group">
-                  <label>هاتف جهة الاتصال</label>
-                  <input type="tel" placeholder="+1 234 567 890" required>
+                  <label>هاتف </label>
+                  <input type="tel" placeholder="Phone number" required>
                 </div>
 
-                <div class="form-group full">
+                <div class="form-group">
                   <label>نوع الاجتماع المفضل</label>
                   <select required>
                     <option value="">اختر نوع الاجتماع</option>
-                    <option>شخصيًا</option>
                     <option>في المكتب</option>
-                    <option>زووم</option>
+                    <option>عن بعد</option>
                   </select>
+                </div>
+                  <div class="form-group">
+                  <label>المسمى الوظيفي</label>
+                  <input type="tel" placeholder="المسمى الوظيفي" required>
                 </div>
 
               </div>
-              <div class="flex items-center gap-3" style="justify-content: flex-end;">
-                <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                  class="flex h-4 w-4 rounded-sm border border-secondary-400 disabled:pointer-events-none disabled:opacity-50 data-[state=checked]:bg-green-500 data-[state=checked]:border-none focus:outline-none transition-all duration-300">
-                </button>
-
-                <input type="checkbox" aria-hidden="true"
-                  style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;"
-                  tabindex="-1" value="on">
-
-                <p class="text-caption font-normal font-poppins" style="text-align: right;">
+              <div style="margin-top: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                <input type="checkbox" id="termsCheckbox" value="on" style="width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
+                <span class="text-caption font-normal font-poppins" style="text-align: right;">
                   أوافق على
                   <a href="/ar/terms-of-use" class="underline">شروط الخدمة</a>
                   و
                   <a href="/ar/privacy-policy" class="underline">سياسة الخصوصية</a>
-                </p>
+                </span>
+              </div>
+              <div id="checkboxError" style="color: #dc2626; font-size: 13px; margin-bottom: 16px; display: none; text-align: center;">
+                يجب عليك الموافقة على شروط الخدمة وسياسة الخصوصية
               </div>
               <div class="submit-wrap">
                 <button type="submit">إرسال الطلب</button>
@@ -251,6 +250,26 @@
       <!-- Scripts -->
       <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
       <script src="main.js"></script>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+          const checkbox = document.getElementById('termsCheckbox');
+          const errorDiv = document.getElementById('checkboxError');
+          
+          if (!checkbox.checked) {
+            e.preventDefault();
+            errorDiv.style.display = 'block';
+          } else {
+            errorDiv.style.display = 'none';
+          }
+        });
+
+        document.getElementById('termsCheckbox').addEventListener('change', function() {
+          const errorDiv = document.getElementById('checkboxError');
+          if (this.checked) {
+            errorDiv.style.display = 'none';
+          }
+        });
+      </script>
 
 </body>
 

@@ -8,7 +8,7 @@
 
   <!-- Fonts (same as site) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Tajawal:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Tajawal:wght@400;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- AOS (optional, already handled in main.js) -->
@@ -161,7 +161,7 @@
             <h1>Book a Demo</h1>
             <p>Tell us a bit about your organization and we’ll schedule a demo that fits your needs.</p>
 
-            <form>
+            <form id="contactForm">
 
               <div class="form-grid">
 
@@ -193,41 +193,41 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Contact Person Name</label>
+                  <label>Name</label>
                   <input type="text" placeholder="Full name" required>
                 </div>
 
                 <div class="form-group">
-                  <label>Contact Person Phone</label>
-                  <input type="tel" placeholder="+1 234 567 890" required>
+                  <label>Phone</label>
+                  <input type="tel" placeholder="Phone Number" required>
                 </div>
 
-                <div class="form-group full">
+                <div class="form-group">
                   <label>Preferred Meeting Type</label>
                   <select required>
                     <option value="">Select meeting type</option>
-                    <option>In Person</option>
                     <option>Office</option>
-                    <option>Zoom</option>
+                    <option>Remotely</option>
                   </select>
                 </div>
-
+                
+                <div class="form-group">
+                  <label>Position</label>
+                  <input type="text" placeholder="Your Position" required>
+                </div>
               </div>
-              <div class="flex items-center gap-3">
-                <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                  class="flex h-4 w-4 rounded-sm border border-secondary-400 disabled:pointer-events-none disabled:opacity-50 data-[state=checked]:bg-green-500 data-[state=checked]:border-none focus:outline-none transition-all duration-300">
-                </button>
 
-                <input type="checkbox" aria-hidden="true"
-                  style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;"
-                  tabindex="-1" value="on">
-
-                <p class="text-caption font-normal font-poppins">
+              <div style="margin-top: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="termsCheckbox" value="on" style="width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;">
+                <span class="text-caption font-normal font-poppins">
                   I agree to the
                   <a href="/en/terms-of-use" class="underline">Terms of Service</a>
                   and
                   <a href="/en/privacy-policy" class="underline">Privacy Policy</a>
-                </p>
+                </span>
+              </div>
+              <div id="checkboxError" style="color: #dc2626; font-size: 13px; margin-bottom: 16px; display: none; text-align: center;">
+                You must agree to the Terms of Service and Privacy Policy
               </div>
               <div class="submit-wrap">
                 <button type="submit">Submit Request</button>
@@ -237,7 +237,9 @@
 
           </div>
         </div>
+      
       </section>
+
  <footer class="footer">
         <div class="footer-bottom">
         <p>Al Tawthiq. All rights reserved © 2026</p>
@@ -247,6 +249,26 @@
       <!-- Scripts -->
       <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
       <script src="main.js"></script>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+          const checkbox = document.getElementById('termsCheckbox');
+          const errorDiv = document.getElementById('checkboxError');
+          
+          if (!checkbox.checked) {
+            e.preventDefault();
+            errorDiv.style.display = 'block';
+          } else {
+            errorDiv.style.display = 'none';
+          }
+        });
+
+        document.getElementById('termsCheckbox').addEventListener('change', function() {
+          const errorDiv = document.getElementById('checkboxError');
+          if (this.checked) {
+            errorDiv.style.display = 'none';
+          }
+        });
+      </script>
     </div>
   </div>
 
