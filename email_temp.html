@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Enroll Now | Altawthiq</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #05070f;
+      font-family: "Cairo", sans-serif;
+      color: #ffffff;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      padding: 22px 10px;
+      background-color: #05070f;
+    }
+    .main {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      border-radius: 0;
+      overflow: hidden;
+      border: 1px solid #1e2436;
+      background:
+        /* Hide the photo except top-left; keep slight background visibility elsewhere */
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.10) 10%,
+          rgba(0, 0, 0, 0.60) 18%,
+          rgba(0, 0, 0, 0.55) 55%,
+          rgba(0, 0, 0, 0.62) 100%
+        ),
+        radial-gradient(circle at 10% 15%,
+          rgba(0, 0, 0, 0.10) 10%,
+          rgba(0, 0, 0, 0.25) 35%,
+          rgba(0, 0, 0, 0.55) 75%,
+          rgba(0, 0, 0, 0.75) 100%
+        ),
+        url("https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80");
+      background-size: 100% 100%, 100% 100%, cover;
+      background-position: center center, top left, top left;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+    }
+    .hero {
+      padding: 24px 34px 30px;
+      text-align: right;
+      direction: rtl;
+    }
+    .topbar {
+      margin-bottom: 52px;
+      overflow: hidden;
+    }
+    .brand-left {
+      float: right;
+    }
+    .brand-right {
+      float: left;
+    }
+    .brand-logo-left {
+      width: 130px;
+      max-width: 130px;
+      height: auto;
+      display: block;
+    }
+    .brand-logo-right {
+      width: 130px;
+      max-width: 130px;
+      height: auto;
+      display: block;
+    }
+    .title {
+      margin: 0;
+      max-width: 500px;
+      font-size: 48px;
+      line-height: 1.06;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .desc {
+      margin: 16px 0 0;
+      max-width: 430px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #dde3ff;
+      opacity: 0.95;
+    }
+    .meta {
+      margin-top: 38px;
+      width: 100%;
+    }
+    .meta td {
+      width: 25%;
+      vertical-align: top;
+      text-align: right;
+      padding-right: 6px;
+    }
+    .label {
+      margin: 0;
+      font-size: 10px;
+      color: #9facd6;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+    .value {
+      margin: 6px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .details-box {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border: 1px solid rgba(167, 183, 232, 0.28);
+      background-color: rgba(9, 14, 30, 0.55);
+    }
+    .details-title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #d8e1ff;
+      font-weight: 700;
+    }
+    .details-list {
+      margin: 0;
+      padding-right: 18px;
+      color: #dce3fb;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .details-list li {
+      margin-bottom: 4px;
+    }
+    .note {
+      margin: 12px 0 0;
+      font-size: 12px;
+      line-height: 1.75;
+      color: #c4cde8;
+    }
+    .cta-wrap {
+      text-align: right;
+      direction: rtl;
+      padding-top: 24px;
+    }
+    .cta {
+      display: inline-block;
+      min-width: 138px;
+      text-align: center;
+      text-decoration: none;
+      background-color: #1f56ff;
+      color: #ffffff !important;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 0;
+      letter-spacing: 0.2px;
+    }
+    .footer {
+      margin: 0;
+      text-align: center;
+      padding: 16px 20px 20px;
+      color: #a8b1cf;
+      font-size: 13px;
+      line-height: 1.8;
+      background-color: rgba(0, 0, 0, 0.18);
+      border-top: 1px solid rgba(141, 157, 204, 0.2);
+    }
+    .footer a {
+      color: #b6c6ff;
+      text-decoration: none;
+    }
+    @media screen and (max-width: 640px) {
+      .hero {
+        padding: 18px 18px 24px;
+      }
+      .title {
+        font-size: 36px;
+        max-width: 100%;
+      }
+      .topbar {
+        margin-bottom: 30px;
+      }
+      .meta td {
+        display: block;
+        width: 100%;
+        padding: 0 0 10px;
+      }
+      .cta-wrap {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <table role="presentation" class="wrapper" width="100%">
+    <tr>
+      <td align="center">
+        <table role="presentation" class="main" width="100%">
+          <tr>
+            <td class="hero">
+              <div class="topbar">
+                <div class="brand-left">
+                  <img class="brand-logo-left" src="assets/images/logo_png.webp" alt="شعار التوثيق">
+                </div>
+                <div class="brand-right">
+                  <img class="brand-logo-right" src="assets/images/white__logo.webp" alt="شعار إضافي">
+                </div>
+              </div>
+
+              <h1 class="title">مهارات الإقناع والتأثير للمتخصصين</h1>
+              <p class="desc">
+                عبر موقع التوثيق ستحصل على تجربة تدريبية عملية تساعدك على بناء حضور مهني قوي وتطوير مهارات التواصل المؤثر.
+              </p>
+<!-- 
+              <table role="presentation" class="meta">
+                <tr>
+                  <td>
+                    <p class="label">التاريخ</p>
+                    <p class="value">17 مايو 2026</p>
+                  </td>
+                  <td>
+                    <p class="label">النقاط المهنية</p>
+                    <p class="value">79 نقطة</p>
+                  </td>
+                  <td>
+                    <p class="label">السعر</p>
+                    <p class="value">118 دولار</p>
+                  </td>
+                  <td>
+                    <p class="label">نمط التدريب</p>
+                    <p class="value">مباشر اونلاين</p>
+                  </td>
+                </tr>
+              </table> -->
+
+              <div class="details-box">
+                <p class="details-title">تفاصيل إضافية عن البرنامج</p>
+                <ul class="details-list">
+                  <li>الفئة المستهدفة: المختصون في القطاعات الصحية والإدارية.</li>
+                  <li>محاور التدريب: التأثير في الآخرين، الإقناع العملي، وصياغة الرسائل المهنية.</li>
+                  <li>المخرجات: أدوات تطبيقية جاهزة للاستخدام في بيئة العمل.</li>
+                </ul>
+                <p class="note">للاستفسار السريع: 0553300598 | البريد الإلكتروني: info@altawthiq.com</p>
+              </div>
+
+              <div class="cta-wrap">
+                <a class="cta" href="https://altawthiq.com/signup/" target="_blank" rel="noopener">سجل الآن</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="footer">
+              الموقع الرسمي: <a href="https://altawthiq.com">altawthiq.com</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>طلب تعاقد تدريبي | التوثيق</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @font-face {
+      font-family: "DroidSansArabic";
+      src: url("./assets/font/Droid Sans Arabic Regular.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --line: #b135f3;
+      --line-soft: rgba(177, 53, 243, 0.38);
+      --primary: #b135f3;
+      --primary-deep: #213a5e;
+      --band: linear-gradient(90deg, rgba(19, 36, 64, 0.97) 0%, rgba(33, 58, 94, 0.94) 45%, rgba(91, 75, 154, 0.88) 100%);
+      --r-block: 14px;
+      --r-input: 10px;
+      --r-pad: clamp(16px, 4vw, 40px);
+      --purchase-form-max: 1320px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body,
+    body * {
+      font-family: "DroidSansArabic", sans-serif !important;
+    }
+
+    .fa-solid,
+    .fa-brands {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+    }
+
+    .fab,
+    .fa-brands {
+      font-family: "Font Awesome 6 Brands" !important;
+    }
+
+    /* Full-width overrides: disable global layout containers on this page */
+    body.contract-page #navbar .container {
+      max-width: none !important;
+      width: 100%;
+      padding-inline: var(--r-pad);
+    }
+
+    body.contract-page footer .container {
+      max-width: none !important;
+      width: 100%;
+      padding-inline: var(--r-pad);
+    }
+
+    body.contract-page {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      line-height: 1.65;
+      padding-top: 120px;
+    }
+
+    .purchase-main {
+      width: 100%;
+      max-width: var(--purchase-form-max);
+      margin: 0 auto;
+      padding: 0 var(--r-pad) 40px;
+      box-sizing: border-box;
+    }
+
+    .back-row {
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+
+    .back-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--primary-deep);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .purchase-band {
+      width: 100%;
+      background: var(--band);
+      color: #fff;
+      padding: clamp(20px, 3.2vw, 36px) clamp(18px, 2.5vw, 28px);
+      border-radius: var(--r-block);
+      border: 1px solid rgba(177, 53, 243, 0.45);
+      box-shadow: 0 1px 0 0 rgba(109, 91, 178, 0.6) inset, 0 8px 24px rgba(19, 36, 64, 0.12);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .purchase-band-kicker {
+      margin: 0 0 6px;
+      font-size: 0.9rem;
+      opacity: 0.92;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .purchase-band h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .purchase-band-lead {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.94;
+      max-width: 900px;
+    }
+
+    #courseChip {
+      display: block;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    /* Form sections: flat, separated by borders only */
+    .contract-form {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .purchase-section {
+      width: 100%;
+      padding: clamp(18px, 2.5vw, 26px) clamp(16px, 2.2vw, 24px);
+      border: 1px solid var(--line);
+      border-radius: var(--r-block);
+      background: #fff;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .purchase-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .purchase-section h2 {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #132440;
+      border-bottom: 2px solid #b135f3;
+      display: inline-block;
+      width: 100%;
+      border-radius: 2px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(14px, 2vw, 22px);
+    }
+
+    @media (max-width: 720px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      margin-bottom: clamp(14px, 2vw, 18px);
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .hint {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--r-input);
+      padding: 11px 14px;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid rgba(177, 53, 243, 0.5);
+      outline-offset: 0;
+      border-color: #b135f3;
+    }
+
+    input[readonly] {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .radio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 28px;
+      align-items: center;
+    }
+
+    .radio-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .radio-row input {
+      width: auto;
+      accent-color: var(--primary);
+    }
+
+    .field-label-inline {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      margin-top: 5px;
+      accent-color: var(--primary);
+    }
+
+    .checkbox-row label {
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .submit-bar {
+      padding-top: 6px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      max-width: 420px;
+      border: none;
+      border-radius: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--btn-brand-start) 0%, var(--btn-brand-end) 100%);
+      color: #fff;
+      box-shadow: var(--btn-brand-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--btn-brand-solid);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: var(--btn-brand-shadow-hover);
+    }
+
+    .form-note {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    #formMessage {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid #a7f3d0;
+      border-radius: var(--r-input);
+      background: #ecfdf5;
+      color: #065f46;
+      font-weight: 700;
+      max-width: 720px;
+    }
+
+    #formMessage.error {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+
+  </style>
+</head>
+<body class="contract-page">
+  <nav id="navbar">
+    <div class="container">
+      <a href="home-ar.html" class="logo">
+        <img src="assets/images/logo_png.webp" alt="Al Tawthiq">
+      </a>
+      <ul>
+        <li><a href="home-ar.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="contact-ar.html">تواصل معنا</a></li>
+      </ul>
+      <a href="home-ar.html" class="logo">
+        <img src="assets/images/white__logo.webp" alt="Al Tawthiq">
+      </a>
+    </div>
+  </nav>
+
+  <main class="purchase-main">
+    <div class="back-row">
+      <a href="./courses.html" class="back-link">← العودة إلى الدورات</a>
+    </div>
+
+    <header class="purchase-band">
+      <p class="purchase-band-kicker">التوثيق — طلب تعاقد تدريبي</p>
+      <h1>نموذج طلب تعاقد على برنامج تدريبي</h1>
+      <p class="purchase-band-lead">
+        يرجى تعبئة البيانات التالية بدقة؛ سيتم استخدامها لإعداد عرض التعاقد والتسعير.
+      </p>
+      <span id="courseChip"></span>
+    </header>
+
+    <form id="contractForm" class="contract-form" novalidate>
+      <input type="hidden" id="courseIdField" name="course_id" value="" />
+
+      <section class="purchase-section">
+        <h2>بيانات الجهة</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="company">اسم المنشأة <span class="hint">(كما في السجل التجاري)</span></label>
+            <input id="company" name="company" type="text" required autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="cr">السجل التجاري / الرقم الموحد <span class="hint">(اختياري)</span></label>
+            <input id="cr" name="cr" type="text" autocomplete="off" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="vat">الرقم الضريبي <span class="hint">(اختياري)</span></label>
+            <input id="vat" name="vat" type="text" />
+          </div>
+          <div class="field">
+            <label for="city">المدينة</label>
+            <input id="city" name="city" type="text" required />
+          </div>
+        </div>
+      </section>
+
+      <section class="purchase-section">
+        <h2>بيانات مقدّم الطلب</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="fullname">الاسم الكامل</label>
+            <input id="fullname" name="fullname" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="jobtitle">المسمى الوظيفي</label>
+            <input id="jobtitle" name="jobtitle" type="text" required />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="email">البريد الإلكتروني</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="phone">رقم الجوال</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+          </div>
+        </div>
+      </section>
+
+      <section class="purchase-section">
+        <h2>تفاصيل البرنامج والتنفيذ</h2>
+        <div class="field">
+          <label for="courseSelect">اسم الدورة</label>
+          <select id="courseSelect" aria-describedby="courseSelectHint">
+          </select>
+          <p id="courseSelectHint" class="hint" style="margin-top: 8px; margin-bottom: 0;">
+            يمكنك تغيير الدورة من القائمة؛ سيتم تحديث التفاصيل أعلاه ورابط الصفحة تلقائيًا.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="trainees">عدد المتدربين المتوقع</label>
+            <select id="trainees" name="trainees" required>
+              <option value="">اختر النطاق</option>
+              <option value="1-10">1 – 10</option>
+              <option value="11-25">11 – 25</option>
+              <option value="26-50">26 – 50</option>
+              <option value="51-100">51 – 100</option>
+              <option value="101-200">101 – 200</option>
+              <option value="200+">أكثر من 200</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="preferDate">تاريخ أو فترة التنفيذ المقترحة</label>
+            <input id="preferDate" name="prefer_date" type="date" />
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label-inline">طريقة التنفيذ</span>
+          <div class="radio-row">
+            <label><input type="radio" name="delivery" value="online" checked /> أونلاين مباشر</label>
+            <label><input type="radio" name="delivery" value="onsite" /> حضوري في مقر الجهة</label>
+            <label><input type="radio" name="delivery" value="hybrid" /> مختلط</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">ملاحظات إضافية للعقد أو المتطلبات الخاصة</label>
+          <textarea id="notes" name="notes" placeholder="عدد الشهادات، لغة التدريب، تقارير متابعة، أي تفاصيل تساعد على إعداد العرض…"></textarea>
+        </div>
+      </section>
+
+      <section class="purchase-section">
+       
+        <div class="submit-bar">
+          <button type="submit" class="btn-submit">إرسال طلب التعاقد</button>
+          <p class="form-note">
+          للاستفسار: <a href="mailto:info@altawthiq.com">info@altawthiq.com</a> — ‎+966 553 300 598
+          </p>
+          <div id="formMessage" role="status"></div>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo_png.webp" alt="Al Tawthiq logo" class="footer-logo">
+          <p> شريكك في بناء القدرات التنافسية</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/tawthiq-sa" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/Jurehaif" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/tawthiqsa/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <h3>تواصل معنا</h3>
+          <p><strong>الهاتف:</strong> ‎+966 553 300 598</p>
+          <p><strong>البريد الإلكتروني:</strong> <a href="mailto:info@altawthiq.com">info@altawthiq.com</a></p>
+          <p><strong>العنوان:</strong> الرياض، المملكة العربية السعودية</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>التوثيق© 2026. جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/course-catalog.js"></script>
+  <script>
+    const catalog = window.AltawthiqCourseCatalog;
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = params.get("id");
+    const allCourses = catalog.getCourses();
+    const initialId =
+      requestedId && allCourses.some((c) => c.id === requestedId) ? requestedId : allCourses[0].id;
+
+    const courseSelect = document.getElementById("courseSelect");
+    const categoryOrder = [];
+    const seenCat = new Set();
+    allCourses.forEach((c) => {
+      if (!seenCat.has(c.category)) {
+        seenCat.add(c.category);
+        categoryOrder.push(c.category);
+      }
+    });
+
+    categoryOrder.forEach((cat) => {
+      const og = document.createElement("optgroup");
+      og.label = catalog.categoryLabels[cat] || cat;
+      allCourses
+        .filter((c) => c.category === cat)
+        .forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c.id;
+          opt.textContent = c.title;
+          og.appendChild(opt);
+        });
+      courseSelect.appendChild(og);
+    });
+
+    function applySelectedCourse(course) {
+      const c = course && course.id ? course : catalog.findCourseById(initialId);
+      document.getElementById("courseIdField").value = c.id;
+      courseSelect.value = c.id;
+      document.getElementById("courseChip").textContent =
+        "الفئة: " + (catalog.categoryLabels[c.category] || "") + "  |  الدورة: " + c.title;
+      document.title = "طلب تعاقد تدريبي — " + c.title + " | التوثيق";
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("id", c.id);
+        history.replaceState({}, "", url);
+      } catch (_) {
+        /* ignore */
+      }
+    }
+
+    applySelectedCourse(catalog.findCourseById(initialId));
+
+    courseSelect.addEventListener("change", function () {
+      applySelectedCourse(catalog.findCourseById(courseSelect.value));
+    });
+
+    (function restrictDateToFuture() {
+      const pad = (n) => String(n).padStart(2, "0");
+      const d = new Date();
+      const today = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+      const preferDate = document.getElementById("preferDate");
+      preferDate.setAttribute("min", today);
+      if (preferDate.value && preferDate.value < today) {
+        preferDate.value = "";
+      }
+    })();
+
+    document.getElementById("contractForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const msg = document.getElementById("formMessage");
+      const pad = (n) => String(n).padStart(2, "0");
+      const d = new Date();
+      const today = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+      const preferDateEl = document.getElementById("preferDate");
+      if (preferDateEl.value && preferDateEl.value < today) {
+        msg.style.display = "block";
+        msg.className = "error";
+        msg.textContent = "لا يمكن اختيار تاريخ في الماضي. اختر تاريخًا اليوم أو في المستقبل.";
+        preferDateEl.value = "";
+        return;
+      }
+      msg.className = "";
+      msg.style.display = "block";
+      msg.textContent =
+        "تم استلام الطلب (واجهة تجريبية). للربط بخادم الإرسال، أضف معالجًا في الخلفية.";
+      msg.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  </script>
+</body>
+</html>

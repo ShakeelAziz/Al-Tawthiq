@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تفاصيل المحور | التوثيق</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./tot_styles.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .details-page {
+        min-height: 100vh;
+        padding: 110px 0 56px;
+        font-family: "Tajawal", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+        background: linear-gradient(180deg, #1a1d21 0%, #111315 100%);
+      }
+
+      .details-card {
+        width: min(900px, 92%);
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(30, 33, 37, 0.92) 0%, rgba(24, 27, 31, 0.94) 100%);
+        border: 1px solid rgba(212, 165, 86, 0.25);
+        border-radius: 18px;
+        padding: 26px;
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(3, 7, 18, 0.42);
+      }
+
+      .details-kicker {
+        margin: 0 0 10px;
+        color: #e5c58a;
+        font-weight: 700;
+      }
+
+      .details-title {
+        margin: 0 0 10px;
+        color: #fff3de;
+      }
+
+      .details-desc {
+        margin: 0 0 16px;
+        line-height: 1.9;
+      }
+
+      .details-image {
+        width: min(300px, 90%);
+        border-radius: 14px;
+        margin: 6px auto 18px;
+        display: block;
+      }
+
+      .details-list {
+        margin: 0 0 22px;
+        padding: 0 18px 0 0;
+      }
+
+      .details-list li {
+        margin-bottom: 8px;
+      }
+
+      .details-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .details-btn {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid rgba(212, 165, 86, 0.45);
+        color: #f5efe3;
+      }
+
+      .details-btn.primary {
+        background: linear-gradient(90deg, #d4a556, #b98734);
+        color: #fff;
+        border-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="tot-body">
+    <nav id="navbar">
+      <div class="container">
+        <a href="home-ar.html" class="logo">
+          <img src="assets/images/logo_png.webp" alt="Al Tawthiq" />
+        </a>
+        <ul>
+          <li><a href="about-jure-ar.html">عن جوري القحطاني</a></li>
+          <li><a href="home-ar.html">الرئيسية</a></li>
+          <li><a href="profile.html">نبذه عنا</a></li>
+        </ul>
+        <a href="home-ar.html" class="logo">
+          <img src="assets/images/white__logo.webp" alt="Al Tawthiq" />
+        </a>
+      </div>
+    </nav>
+
+    <main class="details-page">
+      <article class="details-card">
+        <p id="details-kicker" class="details-kicker"></p>
+        <h1 id="details-title" class="details-title"></h1>
+        <img id="details-image" class="details-image" src="./assets/img_book.png" alt="" />
+        <p id="details-desc" class="details-desc"></p>
+        <ul id="details-list" class="details-list"></ul>
+        <div class="details-actions">
+          <a class="details-btn primary" href="./tot.html#pricing">احجز مقعدك الآن</a>
+          <a class="details-btn" href="./tot.html#program-highlights">العودة إلى المحاور</a>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      (function () {
+        const itemDetails = {
+          "day-1": {
+            kicker: "Day 1",
+            title: "مهارات الإلقاء (Public Speaking)",
+            description: "تركيز على تجاوز رهبة الجمهور، بناء الثقة، وصناعة تواصل إنساني أصيل يوصل الرسالة بوضوح وتأثير.",
+            image: "./assets/img_book.png",
+            imageAlt: "مهارات الإلقاء",
+            points: [
+              "تحليل الجمهور وبناء بروفايل احتياجاته.",
+              "تنظيم المحتوى التدريبي وتصنيف محاوره.",
+              "بناء المصداقية والتغلب على التوتر."
+            ]
+          },
+          "day-2": {
+            kicker: "Day 2",
+            title: "مهارات العرض (Presentation Skills)",
+            description: "تحويل المحتوى إلى عروض جذابة تحفظ انتباه الجمهور من البداية حتى النهاية.",
+            image: "./assets/img_book.png",
+            imageAlt: "مهارات العرض",
+            points: [
+              "أساليب العرض الأساسية والمتقدمة.",
+              "الاتصال اللفظي وغير اللفظي.",
+              "بناء عروض قوية بالبوربوينت واستخدام الوسائط بفعالية."
+            ]
+          },
+          "day-3": {
+            kicker: "Day 3",
+            title: "مهارات التدريب (Training Skills)",
+            description: "تأسيس المدرب على إعداد المادة التدريبية، إدارة التفاعل، وقيادة جلسات تدريبية عملية مؤثرة.",
+            image: "./assets/img_book.png",
+            imageAlt: "مهارات التدريب",
+            points: [
+              "جمع المادة التدريبية وترتيبها وفق أهداف واضحة.",
+              "تصميم تمارين وأنشطة تفاعلية تعزز الفهم.",
+              "إدارة الوقت والطاقة داخل القاعة التدريبية."
+            ]
+          },
+          "day-4": {
+            kicker: "Day 4",
+            title: "التدريب والتوجيه (Coaching & Mentoring)",
+            description: "تنمية قدرة المدرب على مرافقة المتدربين نحو نتائج واقعية عبر التوجيه الفردي والمتابعة المنظمة.",
+            image: "./assets/img_book.png",
+            imageAlt: "التدريب والتوجيه",
+            points: [
+              "أسئلة كوتشينج فعالة لتحفيز التفكير والحلول.",
+              "بناء خطط تطوير فردية قابلة للتنفيذ.",
+              "المتابعة المهنية وقياس التقدم بصورة منتظمة."
+            ]
+          },
+          "day-5": {
+            kicker: "Day 5",
+            title: "مهارات التيسير (Facilitation Skills)",
+            description: "التيسير كمهارة قيادية لقيادة المجموعات نحو الحلول، الإجماع، واتخاذ القرارات.",
+            image: "./assets/img_book.png",
+            imageAlt: "مهارات التيسير",
+            points: [
+              "الفرق بين العملية والمحتوى ومتى تتدخل.",
+              "تخطيط جلسات التيسير وتوجيه الحوار بفاعلية.",
+              "التعامل مع الأنماط الصعبة داخل الفرق."
+            ]
+          },
+          "day-6": {
+            kicker: "Day 6",
+            title: "قياس نتائج التدريب (Measuring Training Results)",
+            description: "تصميم تقييمات دقيقة تثبت أثر التدريب وتحول نتائجه إلى قرارات تطوير قابلة للقياس.",
+            image: "./assets/img_book.png",
+            imageAlt: "قياس نتائج التدريب",
+            points: [
+              "نماذج كولب وكيرك باتريك للتقييم.",
+              "القياس قبل وأثناء وبعد التدريب.",
+              "حساب العائد على الاستثمار وتحسين جودة البرامج."
+            ]
+          }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const itemId = params.get("item");
+        const fallbackId = "day-1";
+        const details = itemDetails[itemId] || itemDetails[fallbackId];
+
+        const titleEl = document.getElementById("details-title");
+        const descEl = document.getElementById("details-desc");
+        const listEl = document.getElementById("details-list");
+        const kickerEl = document.getElementById("details-kicker");
+        const imageEl = document.getElementById("details-image");
+
+        kickerEl.textContent = details.kicker || "";
+        titleEl.textContent = details.title || "تفاصيل المحور";
+        descEl.textContent = details.description || "";
+        imageEl.src = details.image || "./assets/img_book.png";
+        imageEl.alt = details.imageAlt || details.title || "تفاصيل المحور";
+        listEl.innerHTML = (details.points || []).map((point) => "<li>" + point + "</li>").join("");
+        document.title = (details.title || "تفاصيل المحور") + " | التوثيق";
+      })();
+    </script>
+  </body>
+</html>

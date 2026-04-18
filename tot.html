@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>برامجنا التدريبية للشركات | التوثيق</title>
+    <meta
+      name="description"
+      content="برامج تدريبية متخصصة للشركات تشمل القيادة، التسويق، التقنية، السلامة، الذكاء الاصطناعي، المالية، التصميم، والإنتاجية الرقمية مع خيارات تنفيذ مرنة."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://placehold.co" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link 
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./tot_styles.css">
+    <style>
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        will-change: opacity, transform;
+      }
+
+      .reveal-on-scroll.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-card {
+        opacity: 0;
+        transform: translateY(20px) scale(0.985);
+        transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.3s ease;
+        will-change: opacity, transform;
+      }
+
+      .reveal-card.in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .day.day-link {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .day.day-link:hover {
+        transform: translateY(-4px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-on-scroll,
+        .reveal-card,
+        .day.day-link {
+          transition: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+        }
+      }
+
+      .course-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.82), rgba(67, 56, 202, 0.55));
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        backdrop-filter: blur(4px);
+      }
+
+      .course-modal-card {
+        width: min(900px, 96vw);
+        max-height: 90vh;
+        overflow: auto;
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+        border-radius: 18px;
+        padding: 1.6rem 1.4rem;
+      }
+
+      .course-modal-section-title {
+        margin: 0 0 0.45rem;
+        color: #1e1b4b;
+        font-weight: 800;
+        font-size: 1.35rem;
+      }
+
+      .course-modal-section-subtitle {
+        margin: 0 0 1rem;
+        color: #334155;
+        line-height: 1.8;
+      }
+
+      .course-modal-hint {
+        margin: 0.6rem 0 0.85rem;
+        color: #1f2937;
+        background: #eef2ff;
+        border: 1px solid #dbeafe;
+        border-radius: 10px;
+        padding: 0.6rem 0.75rem;
+      }
+
+      .course-modal-close {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        border: 0;
+        background: rgba(15, 23, 42, 0.08);
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .course-modal-close:hover {
+        background: rgba(15, 23, 42, 0.16);
+        transform: scale(1.05);
+      }
+
+      .course-modal-buy-btn {
+        background: linear-gradient(90deg, #1d4ed8, #4f46e5);
+        color: #fff;
+        border: 0;
+        border-radius: 10px;
+        padding: 0.7rem 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(29, 78, 216, 0.28);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      }
+
+      .course-modal-buy-btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.32);
+      }
+
+      .course-modal-buy-btn:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .course-modal-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .course-modal-list li {
+        margin-bottom: 0.6rem;
+      }
+
+      .course-modal-option {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        cursor: pointer;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #fff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      }
+
+      .course-modal-option:hover {
+        border-color: #93c5fd;
+        background: #f8fbff;
+      }
+
+      .course-modal-selected {
+        margin: 0.85rem 0 1rem;
+        color: #0f172a;
+        background: #ecfeff;
+        border: 1px solid #a5f3fc;
+        border-radius: 10px;
+        padding: 0.65rem 0.8rem;
+      }
+
+      .course-purchase-form {
+        margin-top: 0.5rem;
+      }
+
+      .course-purchase-form label {
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.2rem;
+        display: inline-block;
+      }
+
+      .course-purchase-form input,
+      .course-purchase-form select,
+      .course-purchase-form textarea {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 0.62rem 0.7rem;
+        background: #fff;
+        color: #0f172a;
+      }
+
+      .course-purchase-form input:focus,
+      .course-purchase-form select:focus,
+      .course-purchase-form textarea:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+      }
+
+      .course-purchase-form-actions {
+        display: flex;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+        margin-top: 0.35rem;
+      }
+    </style>
+  </head>
+  <body class="tot-body tot-body--full">
+    
+    <nav id="navbar">
+      <div class="container">
+        <a class="logo" href="home-ar.html">
+          <img src="assets/images/logo_png.webp" alt="Al Tawthiq" />
+        </a>
+  
+        <ul>
+          <li><a href="home-ar.html">الرئيسية</a></li>
+          <li><a href="profile.html">من نحن</a></li>
+          <li><a href="about-jure-ar.html">عن جوري القحطاني</a></li>
+      </ul>
+
+        <a class="logo" href="home-ar.html">
+        <img src="assets/images/white__logo.webp" alt="Al Tawthiq" />
+      </a>
+    </div>
+  </nav>
+
+
+  <main class="tot-page tot-page--full">
+  <header class="tot-hero" id="top">
+    <div class="tot-hero__grid">
+      <div class="tot-hero__visual">
+        <img class="tot-hero__img" src="assets/conference.webp" alt="جلسة عمل تدريبية احترافية في بيئة مؤسسية" width="1600" height="1000" fetchpriority="high" />
+        <p class="tot-hero__badge">برامج مخصصة · تنفيذ مرن · نتائج قابلة للقياس</p>
+      </div>
+      <div class="tot-hero__content">
+        <p class="kicker hero-kicker">Corporate Training Solutions · برامج مؤسسية متخصصة</p>
+        <h1 class="hero-title">
+          <span class="hero-title-main">برامجنا التدريبية للشركات</span>
+          <span class="hero-title-sub">مسارات تدريبية عملية تدعم أهداف الأعمال في 2026</span>
+        </h1>
+        <p class="subtitle hero-subtitle">نقدّم أقسام تدريب متعددة داخل صفحة واحدة: تختار القسم، ثم الدورة المناسبة، وتفتح تفاصيلها فوراً مع إمكانية طلب التنفيذ لشركتك.</p>
+        <div class="hero-chips" aria-label="مزايا سريعة">
+          <span>دورات موجهة للشركات فقط</span>
+          <span>تنفيذ أونلاين/حضوري/دولي</span>
+          <span>تصميم تدريبي حسب عدد الموظفين</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#books-courses">شراء دورة للشركة</a>
+          <a class="btn btn-outline" href="#books-courses">تصفح الأقسام والدورات</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="tot-stats" id="program-highlights" aria-label="أرقام البرنامج">
+    <article class="highlight-item">
+      <strong>8+ أقسام</strong>
+      <span>مسارات تدريبية مهنية متخصصة</span>
+    </article>
+    <article class="highlight-item">
+      <strong>100%</strong>
+      <span>تركيز على احتياجات الشركات</span>
+    </article>
+    <article class="highlight-item">
+      <strong>3 أنماط تنفيذ</strong>
+      <span>أونلاين، حضوري، أو تنفيذ دولي</span>
+    </article>
+  </section>
+
+
+
+  <section class="section_new section-alt section-panel">
+    <div class="container">
+      <h2>مسارات إضافية مقترحة للشركات</h2>
+      <div class="grid three">
+        <article class="card">
+          <h3>إدارة الموارد البشرية (HR)</h3>
+          <p>توطين الوظائف، أنظمة العمل، وإدارة الأداء بما يتوافق مع متطلبات سوق العمل.</p>
+        </article>
+        <article class="card">
+          <h3>تطوير الذات والمهارات الناعمة (Soft Skills)</h3>
+          <p>إدارة الوقت، الذكاء العاطفي، ومهارات العرض لرفع كفاءة الأفراد داخل بيئة العمل.</p>
+        </article>
+        <article class="card">
+          <h3>سلسلة الإمداد والخدمات اللوجستية (Supply Chain)</h3>
+          <p>إدارة المستودعات، المشتريات، والمخزون لتحسين الاستدامة التشغيلية.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="tot-strip" aria-label="لمحات من بيئة التدريب المؤسسي">
+    <div class="tot-strip__items">
+      <figure><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="فريق في جلسة تخطيط تدريبي" loading="lazy" width="800" height="600" /></figure>
+      <figure><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="اجتماع إداري احترافي" loading="lazy" width="800" height="600" /></figure>
+            <figure><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="فريق يعمل على مخططات ومشاريع" loading="lazy" width="800" height="600" /></figure>
+    </div>
+  </section>
+
+  <section class="tot-course-facts section-panel" id="program-overview" aria-labelledby="course-facts-heading">
+    <div class="container tot-course-facts__inner">
+      <h2 id="course-facts-heading">تعريف البرنامج وبيانات التنفيذ</h2>
+      <p class="tot-lead">تدريب المدربين (Train the Trainer) برنامج مكثّف يهدف إلى تمكين المشاركين من تحويل المعرفة التخصصية إلى تجربة تعلّم منظّمة داخل القاعة، مع ضبط الأداء وفق مؤشرات قابلة للقياس.</p>
+      <div class="tot-course-facts__grid">
+        <article class="tot-fact">
+          <h3>المدة والحضور</h3>
+          <p>6 أيام تدريبية متتالية، بمعدل 8 ساعات وجهاً لوجه يومياً (إجمالي 48 ساعة تعليمية معتمدة)، مع استراحات منظمة وجلسات تطبيق عملي في كل يوم.</p>
+        </article>
+        <article class="tot-fact">
+          <h3>نموذج التعلم</h3>
+          <p>مزيج من الإطار النظري، العروض النموذجية، التمرين المصحوب بالملاحظات، والتغذية الراجعة المنظمة؛ مع حزمة أدوات تشمل قوالب جدول أعمال الجلسة، بطاقات أنشطة، ونماذج تقييم.</p>
+        </article>
+        <article class="tot-fact">
+          <h3>المخرجات الشخصية</h3>
+          <p>خطة تدريب مصغّرة، خريطة محتوى لموضوع تختاره، وتسجيل فيديو قصير لجزء من جلسة تقدّمه أمام المجموعة ضمن معايير الأداء المتفق عليها.</p>
+        </article>
+        <article class="tot-fact">
+          <h3>الجمهور المستهدف</h3>
+          <p>مسؤولو التدريب والتطوير، أخصائيو الموارد البشرية، المشرفون على البرامج الداخلية، والمستعدون للانتقال من «الخبير في المجال» إلى «المدرب القادر على التعليم».</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+    <section class="section_new section-panel">
+      <div class="tot-split">
+        <div class="tot-split__body">
+          <h2>ماذا يغطي برنامج تدريب المدربين؟</h2>
+          <p>
+            يمر البرنامج بمسار متكامل يبدأ من تحليل احتياجات المتعلّمين وصياغة أهداف تدريبية قابلة للقياس، ثم تصميم الحصص واختيار الأساليب المناسبة (عرض، نقاش، تمثيل أدوار، تعلّم جماعي)، وصولاً إلى إدارة ديناميكيات المجموعة والتعامل مع حالات مقاومة التغيير أو ضعف المشاركة.
+          </p>
+          <ul class="tot-checklist">
+            <li>توحيد مفاهيم التدريب مقابل التحاضر والتوجيه والتيسير.</li>
+            <li>بناء خرائط محتوى وربطها بمخرجات التعلم ومستويات بلوم المنقحة.</li>
+            <li>تطبيق نماذج تقييم أثر (كيرك باتريك) وربطها بتقارير بسيطة للإدارة.</li>
+            <li>إعداد بيئة قاعة آمنة للتجربة والخطأ مع معايير احترام الوقت والخصوصية.</li>
+          </ul>
+        </div>
+        <figure class="tot-split__media">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="مناقشة تدريبية منظمة حول لوح أبيض" width="900" height="700" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section_new section-alt tot-band section-panel">
+      <div class="container">
+        <h2>منهجية البرنامج</h2>
+        <p>
+          نركّز على سلسلة أداء المدرب: التحضير، الافتتاح، إدارة التفاعل، التعامل مع الأسئلة الصعبة، الختام، والمتابعة بعد الجلسة. كل وحدة تربط بين نموذج تعليمي موثوق ومهارات سلوكية يمكن ملاحظتها وتقييمها، بما يخدم التدريب الداخلي في المؤسسات والبرامج المفتوحة على حد سواء.
+        </p>
+      </div>
+    </section>
+
+    <section class="section_new container section-panel">
+      <h2>مسار المستويين داخل البرنامج</h2>
+      <p class="tot-lead tot-lead--tight">الستة أيام موزّعة على مسارين متكاملين: تأسيس قوي للأداء التدريبي ثم تعميق في الأدوات القيادية والقياس؛ مع تسلسل تدريجي يضمن أن كل يوم يبني على سابقه.</p>
+      <div class="grid two">
+        <article class="card">
+          <div class="tot-cardfigure">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="فريق تدريبي في جلسة عمل" loading="lazy" width="800" height="450" />
+          </div>
+          <h3>المستوى التأسيسي (الأيام 1–3)</h3>
+          <p>إعداد أرضية مشتركة للمفاهيم والأدوات التي يعتمد عليها أي مدرب محترف.</p>
+          <ul>
+            <li>صياغة أهداف تدريبية قابلة للقياس وربطها بالاحتياجات.</li>
+            <li>هندسة الجلسة: توقيت، فقرات، انتقالات، ومواد داعمة.</li>
+            <li>مهارات الإلقاء والعرض التقديمي وإدارة التوتر أمام الجمهور.</li>
+            <li>تصميم أنشطة قصيرة وقياس فهم مبدئي داخل الحصة.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="tot-cardfigure">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="مناقشة عمل جماعي في مكتب" loading="lazy" width="800" height="450" />
+          </div>
+          <h3>المستوى المتقدم (الأيام 4–6)</h3>
+          <p>ترسيخ الأدوات القيادية للمدرب كميسّر ومتابع للأداء ومسؤول عن إثبات الأثر.</p>
+          <ul>
+            <li>التدريب على التوجيه والكوتشينج داخل سياق الأهداف التعليمية.</li>
+            <li>تيسير مجموعات العمل وضبط الحوار واتخاذ القرار.</li>
+            <li>نماذج تقييم الأثر وربطها بتقارير مبسطة لصناع القرار.</li>
+            <li>تصميم خطة تنفيذ لبرنامج داخلي قصير المدى (مشروع ختامي).</li>
+          </ul>
+        </article>
+      </div>
+      <p class="meta">إجمالي الحضور: 6 أيام × 8 ساعات تدريبية يومياً = 48 ساعة معتمدة (شاملة الاستراحات المجدولة داخل اليوم التدريبي).</p>
+    </section>
+
+  
+
+    <section class="section_new section-dark section-panel" id="books-courses">
+      <div class="container">
+        <h2>أقسام الدورات للشركات</h2>
+        <div class="grid three">
+          <a class="day day-link course-book-trigger" href="#" data-course-key="leadership" aria-label="فتح تفاصيل القيادة والإدارة">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم القيادة والإدارة" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 1</strong><span>القيادة والإدارة</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="marketing" aria-label="فتح تفاصيل التسويق والمبيعات الحديثة">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم التسويق والمبيعات الحديثة" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 2</strong><span>التسويق والمبيعات الحديثة</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="technical" aria-label="فتح تفاصيل الدورات التقنية">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم الدورات التقنية" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 3</strong><span>الدورات التقنية</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="HealthandSafety" aria-label="فتح تفاصيل الأمن والسلامة والصحة المهنية">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم الأمن والسلامة والصحة المهنية" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 4</strong><span>الأمن والسلامة والصحة المهنية</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="ai" aria-label="فتح تفاصيل الذكاء الاصطناعي والأتمتة">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم الذكاء الاصطناعي والأتمتة" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 5</strong><span>الذكاء الاصطناعي والأتمتة</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="finance" aria-label="فتح تفاصيل المالية والمحاسبة">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم المالية والمحاسبة" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 6</strong><span>المالية والمحاسبة</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="design" aria-label="فتح تفاصيل التصميم والإبداع المرئي">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم التصميم والإبداع المرئي" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 7</strong><span>التصميم والإبداع المرئي</span>
+            </div>
+          </a>
+          <a class="day day-link course-book-trigger" href="#" data-course-key="productivity" aria-label="فتح تفاصيل المهارات الرقمية والإنتاجية">
+            <img class="day-thumb day-thumb--book" src="./assets/book_3.png" alt="قسم المهارات الرقمية والإنتاجية" loading="lazy" width="640" height="400" />
+            <div class="day-body">
+              <strong>القسم 8</strong><span>المهارات الرقمية والإنتاجية</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section_new container section-panel">
+      <h2>الاعتماد والمخرجات المؤسسية</h2>
+      <p class="tot-lead tot-lead--tight">يُصمَّم المسار ليتوافق مع متطلبات التسجيل في سجلات التدريب داخل الجهات، مع تسليم وثائق تثبت الحضور وساعات التعلّم وفق الجداول المعتمدة.</p>
+      <div class="grid two">
+        <article class="card">
+          <h3>الوثائق والامتثال</h3>
+          <ul>
+            <li>شهادتان معتمدتان للبرنامج المتكامل عند استيفاء متطلبات الحضور والتقييم.</li>
+            <li>اعتماد من المؤسسة العامة للتدريب التقني والمهني ضمن الإطار النظامي المعتمد للدورات المهنية.</li>
+            <li>تصريح من المركز الوطني للتعليم الإلكتروني للجانب الرقمي المرتبط بالمنصة والتسجيلات (حسب الباقة).</li>
+            <li>سجل حضور إلكتروني وقائمة تحقق للمهام التطبيقية يمكن إرفاقها بملف التدريب الداخلي.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>مخرجات يمكن استخدامها فوراً</h3>
+          <ul>
+            <li>حزمة قوالب: خطة جلسة، بطاقة نشاط، استمارة ملاحظات، نموذج تقييم ذاتي للمتدرب.</li>
+            <li>مشروع ختامي: مخطط برنامج تدريبي قصير (2–3 جلسات) مع أهداف ومؤشرات أداء مقترحة.</li>
+            <li>دليل سريع لربط أنشطة الحصة بمستويات أهداف بلوم المنقحة لسهولة المراجعة مع أصحاب المصلحة.</li>
+            <li>إطار عمل لمتابعة ما بعد التدريب لمدة 30 يوماً لدعم انتقال المهارات إلى بيئة العمل.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section_new section-alt section-panel">
+      <div class="container">
+        <h2>منهجية تنفيذ موثوقة للشركات</h2>
+        <div class="grid two">
+          <article class="card detail-card">
+            <img class="detail-image" src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="قاعة محاضرات احترافية" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>تحليل احتياج تدريبي قبل البدء</h3>
+              <p>كل برنامج يبدأ بدراسة احتياج فعلية بالتنسيق مع الإدارة المعنية لضمان أن المحتوى مرتبط مباشرة بالأداء المطلوب داخل الشركة.</p>
+              <ul>
+                <li>تحديد الفجوة بين الوضع الحالي والمستهدف.</li>
+                <li>مواءمة الأهداف التدريبية مع مؤشرات الأعمال.</li>
+                <li>اختيار الفئات المستهدفة ومستوى البرنامج المناسب.</li>
+                <li>اعتماد خطة تنفيذ واضحة قبل الإطلاق.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card detail-card">
+            <img class="detail-image" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="عرض تقديمي في بيئة عمل" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>تصميم برنامج مخصص لكل جهة</h3>
+              <p>لا نعتمد قالباً ثابتاً؛ يتم تخصيص المحتوى وحالات التطبيق بما يتناسب مع طبيعة القطاع وعمليات الشركة.</p>
+              <ul>
+                <li>صياغة سيناريوهات تدريب مرتبطة بالعمل اليومي.</li>
+                <li>تعديل الأمثلة والأدوات حسب بيئة العميل.</li>
+                <li>تحديد مخرجات تعلم قابلة للقياس لكل جلسة.</li>
+                <li>مراجعة واعتماد المحتوى قبل التنفيذ.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card detail-card">
+            <img class="detail-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="مدرب يشرح أمام متدربين في قاعة دراسية" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>مدربون معتمدون وخبرة قطاعية</h3>
+              <p>تنفيذ البرامج يتم بواسطة مدربين ذوي خبرة عملية في قطاعات متعددة، مع التزام بمعايير مهنية واضحة أثناء التدريب.</p>
+              <ul>
+                <li>اختيار المدرب وفق موضوع البرنامج وطبيعة القطاع.</li>
+                <li>إدارة جلسات تفاعلية وليست نظرية فقط.</li>
+                <li>تطبيقات عملية مرتبطة بمهام الموظفين.</li>
+                <li>متابعة جودة التنفيذ أثناء كل دفعة.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card detail-card">
+            <img class="detail-image" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="جلسة توجيه مهنية" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>نموذج تنفيذ مرن (أونلاين، حضوري، دولي)</h3>
+              <p>يمكن تنفيذ نفس البرنامج بأكثر من نموذج تشغيلي مع المحافظة على جودة المخرجات التدريبية.</p>
+              <ul>
+                <li>تنفيذ داخل مقر الشركة أو عبر المنصات الرقمية.</li>
+                <li>خطة زمنية مرنة وفق جداول الفرق التشغيلية.</li>
+                <li>إمكانية تقسيم التدريب إلى دفعات متعددة.</li>
+                <li>توحيد تجربة المتدربين في جميع أنماط التنفيذ.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card detail-card">
+            <img class="detail-image" src="./assets/faci.jpg" alt="ورشة عمل جماعية" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>قياس أثر تدريبي قابل للتتبع</h3>
+              <p>لا يقتصر التقييم على رضا المشاركين فقط، بل يمتد إلى قياس اكتساب المهارة وتحول الأداء بعد البرنامج.</p>
+              <ul>
+                <li>اختبارات أو تقييمات قصيرة قبل وبعد التدريب.</li>
+                <li>مؤشرات واضحة لقياس التحسن في الأداء.</li>
+                <li>تحليل نتائج كل دفعة تدريبية.</li>
+                <li>توصيات عملية للدورات القادمة.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card detail-card">
+            <img class="detail-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="تحليل بيانات وتقارير أداء" loading="lazy" width="800" height="500" />
+            <div class="detail-content">
+              <h3>تقارير تنفيذ وشفافية للعميل</h3>
+              <p>تحصل الجهة على تقارير واضحة عن الحضور، التفاعل، مستوى الإنجاز، والتوصيات لضمان متابعة التدريب بشكل احترافي.</p>
+              <ul>
+                <li>تقرير ختامي تنفيذي لكل برنامج.</li>
+                <li>ملخص نقاط القوة وفرص التحسين.</li>
+                <li>توثيق الالتزام بساعات التنفيذ المعتمدة.</li>
+                <li>قناة متابعة مع الجهة بعد انتهاء الدورة.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tot-showcase" aria-label="صور تعبيرية لبيئة التدريب المؤسسي">
+      <figure><img src="assets/images/mti.jpg" alt="قاعة مؤتمرات وتدريب احترافية" loading="lazy" width="600" height="600" /></figure>
+      <figure><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&amp;fit=crop&amp;w=1200&amp;h=1200&amp;q=88" alt="مكتب حديث بإضاءة طبيعية ومكاتب مفتوحة" loading="lazy" width="600" height="600" /></figure>
+      <figure><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=1200&amp;h=1200&amp;q=88" alt="متدربون في ورشة عمل مع حواسيب محمولة" loading="lazy" width="600" height="600" /></figure>
+      <figure><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&amp;fit=crop&amp;w=1200&amp;h=1200&amp;q=88" alt="فريق يخطط حول لوح أبيض في جلسة تيسير" loading="lazy" width="600" height="600" /></figure>
+    </section>
+
+    <section class="section_new section-alt section-panel">
+      <div class="container">
+        <h2>انطباعات المشاركين</h2>
+        <div class="grid two">
+          <blockquote>
+            <p>«هيكل واضح يربط بين الأهداف التعليمية والأنشطة داخل القاعة؛ ساعدنا فريق الموارد البشرية على توحيد أسلوب التدريب الداخلي.»</p>
+            <cite>— مشرف تدريب، قطاع الخدمات</cite>
+          </blockquote>
+          <blockquote>
+            <p>«التمارين المصحوبة بالملاحظات أبرزت فجوات بسيطة في أسلوبي كانت تؤثر على الأثر؛ خرجت بخطة تطبيق لثلاث جلسات داخلية.»</p>
+            <cite>— مسؤول تطوير، شركة متوسطة</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section_new  container section-panel">
+      <h2>الأسئلة الشائعة</h2>
+      <details>
+        <summary>لمن يُنصح بهذا البرنامج؟</summary>
+        <p>
+          للعاملين في التدريب والتطوير والموارد البشرية، ولمن ينتقل من دور الخبير الفني إلى مسؤولية نقل المعرفة داخل الفرق، ولمن يحتاج إلى لغة مشتركة مع الإدارة حول مخرجات التدريب.
+        </p>
+      </details>
+      <details>
+        <summary>هل يشترط خبرة تدريب سابقة؟</summary>
+        <p>
+          يُفضّل وجود خبرة عرض أو تقديم داخلي، لكن المسار التأسيسي في الأيام الثلاثة الأولى يبني الأرضية المشتركة. يُراجع الطلب الفردي مع فريق القبول عند الحاجة.
+        </p>
+      </details>
+      <details>
+        <summary>كيف تُثبت الساعات التدريبية المعتمدة؟</summary>
+        <p>
+          يُسلَّم سجل حضور إلكتروني وشهادات وفق الجهات المعتمدة المذكورة أعلاه. يُنصح بإرفاق الوثائق بملف التطوير الداخلي في مؤسستك وفق سياساتكم.
+        </p>
+      </details>
+      <details>
+        <summary>هل تتوفر مواد بعد انتهاء البرنامج؟</summary>
+        <p>
+          تتضمن الباقة الأساسية القوالب والملفات المستخدمة أثناء الدورة. الباقة الموسّعة تضيف مراجع فيديو وموارد منظمة على المنصة وفق اتفاقية الاستخدام المرسلة عند التسجيل.
+        </p>
+      </details>
+    </section>
+  </main>
+
+
+     <!-- FOOTER -->
+  <footer>
+    
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo_png.webp" alt="Al Tawthiq logo" class="footer-logo" width="220" height="72">
+          <p> شريكك في بناء القدرات التنافسية</p>
+
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/tawthiq-sa" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.facebook.com/tawthiqsa" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/tawthiqsa/" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://x.com/Altawthiq_sa/" target="_blank" rel="noopener" aria-label="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://wa.me/966553300598" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <h3>تواصل معنا</h3>
+          <p><strong>الهاتف:</strong> ‎+966 553 300 598</p>
+          <p><strong>البريد الإلكتروني:</strong> <a href="mailto:info@altawthiq.com">info@altawthiq.com</a></p>
+          <p><strong>العنوان:</strong> الرياض، المملكة العربية السعودية</p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-map">
+            <h5>موقعنا على الخريطة</h5>
+            <div class="map-container">
+
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.939829397909!2d46.701665710943374!3d24.660199377969043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f050035914655%3A0x3f84ffe264b6fbd7!2z2YXZhtiq2K_ZiSDYp9mE2YjYudmKINin2YTZgdmD2LHZig!5e0!3m2!1sen!2ssa!4v1772026131238!5m2!1sen!2ssa"
+                width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+          </div>
+        </div>
+        <div class="footer-brand">
+          <img src="assets/images/white__logo.webp" alt="Training &amp; dev logo" class="footer-logo" width="220" height="72">
+          <p>رقم رخصة المؤسسة : 224219355451812</p>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+        <p>التوثيق© 2026. جميع الحقوق محفوظة  </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Icon Button -->
+  <div id="chat-toggle" onclick="toggleChat()">
+    💬
+  </div>
+
+  <!-- Chatbot Container -->
+  <div id="chatbot" class="hidden" dir="rtl">
+    <div id="chat-header">
+      <div class="header-left">
+        <div class="avatar">F</div>
+        <div>
+          <div class="title">FAQ Support</div>
+          <div class="subtitle">Online</div>
+        </div>
+      </div>
+      <span class="close-btn" onclick="toggleChat()">✖</span>
+    </div>
+
+    <div id="chat-messages"></div>
+
+    <div id="chat-input">
+      <input type="text" id="userInput" placeholder="اكتب رسالة...">
+      <button onclick="sendMessage()">◀</button>
+    </div>
+  </div>
+
+  <!-- <a href="https://wa.me/966553300598?text=I%20want%20more%20information%20about%20your%20services"
+    class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a> -->
+
+  <div id="course-modal-overlay" class="course-modal-overlay">
+    <div id="course-modal" class="card course-modal-card" role="dialog" aria-modal="true" aria-labelledby="course-modal-title">
+      <button id="course-modal-close" class="course-modal-close" type="button" aria-label="إغلاق">✕</button>
+
+      <div id="course-modal-view-details">
+        <h3 id="course-modal-title" class="course-modal-section-title">تفاصيل القسم</h3>
+        <p id="course-modal-description" class="course-modal-section-subtitle"></p>
+        <p class="course-modal-hint"><strong>أمثلة الدورات ضمن هذا القسم:</strong></p>
+        <ul id="course-modal-list" class="course-modal-list"></ul>
+        <p id="selected-course-preview" class="course-modal-selected">هذا الطلب مخصص لشراء البرنامج كاملًا للشركة.</p>
+        <button class="course-modal-buy-btn" id="course-open-purchase-form" type="button">شراء البرنامج للشركة</button>
+      </div>
+
+      <div id="course-modal-view-form" style="display:none;">
+        <h3 class="course-modal-section-title">طلب شراء دورة للشركة</h3>
+        <p class="course-modal-section-subtitle">يرجى تعبئة بيانات التواصل، وسيقوم فريقنا بالتواصل معكم بالعرض المناسب.</p>
+        <form id="course-purchase-form" class="course-purchase-form" action="#" method="post">
+          <input id="popup-requested-course" name="requested_course" type="hidden" />
+          <input id="popup-requested-department" name="requested_department" type="hidden" />
+          <p><label for="popup-selected-course">البرنامج المطلوب</label><br /><input id="popup-selected-course" type="text" readonly /></p>
+          <div class="grid two">
+            <p><label for="popup-name">الاسم</label><br /><input id="popup-name" name="name" type="text" required /></p>
+            <p><label for="popup-email">البريد الإلكتروني</label><br /><input id="popup-email" name="email" type="email" required /></p>
+            <p><label for="popup-phone">رقم الجوال</label><br /><input id="popup-phone" name="phone" type="tel" required /></p>
+            <p><label for="popup-company-name">اسم الشركة</label><br /><input id="popup-company-name" name="company_name" type="text" required /></p>
+            <p><label for="popup-position">المسمى الوظيفي</label><br /><input id="popup-position" name="position" type="text" required /></p>
+            <p><label for="popup-employees-count">عدد الموظفين المطلوب تدريبهم</label><br /><input id="popup-employees-count" name="employees_count" type="number" min="1" required /></p>
+            <p><label for="popup-delivery-mode">نوع التنفيذ</label><br />
+              <select id="popup-delivery-mode" name="delivery_mode" required>
+                <option value="">اختر نوع التنفيذ</option>
+                <option value="online">أونلاين</option>
+                <option value="onsite">حضوري داخل مقر الشركة</option>
+                <option value="international">تنفيذ دولي</option>
+              </select>
+            </p>
+            <p><label for="popup-expected-dates">التواريخ المتوقعة للتنفيذ</label><br /><input id="popup-expected-dates" name="expected_dates" type="text" placeholder="مثال: الأسبوع الثاني من مايو 2026" required /></p>
+          </div>
+          <p><label for="popup-training-notes">ملاحظات إضافية</label><br /><textarea id="popup-training-notes" name="notes" rows="4" placeholder="أي متطلبات خاصة متعلقة بالمحتوى أو التنفيذ"></textarea></p>
+          <div class="course-purchase-form-actions">
+            <button class="course-modal-buy-btn" type="submit">إرسال طلب شراء الدورة للشركة</button>
+            <button class="btn btn-outline" id="course-back-to-details" type="button">العودة للتفاصيل</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const corporateCourseDetails = {
+      leadership: {
+        title: "القيادة والإدارة (Leadership & Management)",
+        description: "برامج متقدمة تستهدف القيادات والإدارة العليا، وتركز على اتخاذ القرار، القيادة المؤثرة، وبناء الاستراتيجيات الحديثة.",
+        courses: [
+          "اتخاذ القرار الاستراتيجي",
+          "القيادة التحويلية",
+          "الذكاء العاطفي في القيادة",
+          "إدارة الأداء المؤسسي",
+          "الحوكمة وإدارة المخاطر"
+        ]
+      },
+      marketing: {
+        title: "التسويق والمبيعات الحديثة (Modern Marketing & Sales)",
+        description: "برامج حديثة تواكب تطورات السوق في 2026 وتركز على التحول الرقمي، الأتمتة، واستراتيجيات النمو.",
+        courses: [
+          "إطلاق وإدارة الحملات التسويقية",
+          "أتمتة التسويق (Marketing Automation)",
+          "أتمتة المبيعات (Sales Automation)",
+          "كتابة المحتوى التسويقي",
+          "تحليل بيانات العملاء",
+          "استراتيجيات النمو الرقمي"
+        ]
+      },
+      technical: {
+        title: "الدورات التقنية (Technical & Computer Skills)",
+        description: "برامج تقنية عملية تغطي المهارات الرقمية الأساسية والمتقدمة لدعم بيئة العمل الحديثة.",
+        courses: [
+          "Excel (مبتدئ – متقدم)",
+          "Power BI وتحليل البيانات",
+          "أساسيات الذكاء الاصطناعي",
+          "إدارة البيانات",
+          "أدوات العمل الرقمية"
+        ]
+      },
+      HealthandSafety: {
+        title: "الأمن، السلامة، والصحة المهنية (HealthandSafety)",
+        description: "تستهدف مسؤولي المواقع، المهندسين، ومشرفي السلامة لتعزيز الامتثال وتقليل المخاطر التشغيلية.",
+        courses: [
+          "الأوشا (OSHA) في السلامة والصحة المهنية",
+          "إدارة السلامة في بيئة العمل",
+          "الإسعافات الأولية والتعامل مع الطوارئ",
+          "نظام الآيزو (ISO 45001)"
+        ]
+      },
+      ArtificialIntelligence: {
+        title: "الذكاء الاصطناعي والأتمتة (AI & Automation)",
+        description: "تستهدف الموظفين الراغبين في زيادة الإنتاجية باستخدام التقنيات الحديثة داخل الأعمال.",
+        courses: [
+          "تطبيقات الذكاء الاصطناعي في الأعمال (ChatGPT وGemini)",
+          "أتمتة المهام اليومية (No-Code)",
+          "هندسة الأوامر (Prompt Engineering)",
+          "أخلاقيات الذكاء الاصطناعي والأمن السيبراني للموظفين"
+        ]
+      },
+      finance: {
+        title: "المالية والمحاسبة (Finance & Accounting)",
+        description: "تستهدف المحاسبين وغير الماليين الذين يحتاجون لفهم الأرقام والامتثال المالي الحديث.",
+        courses: [
+          "المالية لغير الماليين",
+          "المحاسبة الضريبية (VAT) والزكاة",
+          "التحليل المالي المتقدم وتوقع التدفقات النقدية",
+          "المراجعة الداخلية والرقابة المالية"
+        ]
+      },
+      design: {
+        title: "التصميم والإبداع المرئي (Graphic Design)",
+        description: "تستهدف المصممين المبتدئين والمحترفين لبناء مخرجات بصرية قوية للشركات.",
+        courses: [
+          "أساسيات الجرافيك ديزاين (Adobe Photoshop & Illustrator)",
+          "تصميم واجهات المستخدم (UI/UX)",
+          "المونتاج وصناعة المحتوى المرئي (Adobe Premiere & After Effects)",
+          "التصميم عبر Canva"
+        ]
+      },
+      productivity: {
+        title: "المهارات الرقمية والإنتاجية (Digital Productivity)",
+        description: "تستهدف جميع الموظفين لرفع كفاءة العمل المكتبي والإنتاجية اليومية.",
+        courses: [
+          "إكسيل من الصفر إلى الاحتراف (Excel Dashboard)",
+          "احتراف أدوات Google Workspace",
+          "مهارات العرض والتقديم عبر (PowerPoint & Prezi)",
+          "الأمن السيبراني الشخصي"
+        ]
+      }
+    };
+
+    const courseTriggers = document.querySelectorAll(".course-book-trigger");
+    const modalOverlay = document.getElementById("course-modal-overlay");
+    const modalTitle = document.getElementById("course-modal-title");
+    const modalDescription = document.getElementById("course-modal-description");
+    const modalList = document.getElementById("course-modal-list");
+    const modalCloseButton = document.getElementById("course-modal-close");
+    const openPurchaseFormButton = document.getElementById("course-open-purchase-form");
+    const backToDetailsButton = document.getElementById("course-back-to-details");
+    const detailsView = document.getElementById("course-modal-view-details");
+    const formView = document.getElementById("course-modal-view-form");
+    const popupRequestedCourse = document.getElementById("popup-requested-course");
+    const popupRequestedDepartment = document.getElementById("popup-requested-department");
+    const popupSelectedCourse = document.getElementById("popup-selected-course");
+    const selectedCoursePreview = document.getElementById("selected-course-preview");
+    let selectedDepartmentTitle = "";
+
+    const openDetailsView = () => {
+      detailsView.style.display = "block";
+      formView.style.display = "none";
+    };
+
+    const openFormView = () => {
+      detailsView.style.display = "none";
+      formView.style.display = "block";
+      popupRequestedCourse.value = selectedDepartmentTitle;
+      popupRequestedDepartment.value = selectedDepartmentTitle;
+      popupSelectedCourse.value = selectedDepartmentTitle;
+    };
+
+    const openModal = () => {
+      modalOverlay.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modalOverlay.style.display = "none";
+      document.body.style.overflow = "";
+      openDetailsView();
+    };
+
+    courseTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        const key = trigger.dataset.courseKey;
+        const selected = corporateCourseDetails[key];
+        if (!selected) return;
+
+        selectedDepartmentTitle = selected.title;
+        modalTitle.textContent = selected.title;
+        modalDescription.textContent = selected.description;
+        selectedCoursePreview.innerHTML = "هذا الطلب مخصص لشراء البرنامج كاملًا للشركة.";
+        modalList.innerHTML = selected.courses
+          .map((course) => `<li><div class="course-modal-option"><span>${course}</span></div></li>`)
+          .join("");
+
+        openDetailsView();
+        openModal();
+      });
+    });
+
+    openPurchaseFormButton.addEventListener("click", openFormView);
+    backToDetailsButton.addEventListener("click", openDetailsView);
+    modalCloseButton.addEventListener("click", closeModal);
+
+    modalOverlay.addEventListener("click", (event) => {
+      if (event.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modalOverlay.style.display === "flex") {
+        closeModal();
+      }
+    });
+
+    const revealTargets = document.querySelectorAll(
+      ".tot-hero, .tot-stats, .tot-strip, .section-panel, .tot-showcase, .footer-grid, .footer-bottom"
+    );
+    const revealCards = document.querySelectorAll(
+      ".card, .day.day-link, .highlight-item, .tot-fact, blockquote"
+    );
+
+    revealTargets.forEach((el) => el.classList.add("reveal-on-scroll"));
+    revealCards.forEach((el) => el.classList.add("reveal-card"));
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      [...revealTargets, ...revealCards].forEach((el, index) => {
+        el.style.transitionDelay = `${Math.min(index * 20, 260)}ms`;
+        revealObserver.observe(el);
+      });
+    } else {
+      [...revealTargets, ...revealCards].forEach((el) => el.classList.add("in-view"));
+    }
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="main.js"></script>
+  <script src="faq-chat-ar.js"></script>
+  </body>
+</html>

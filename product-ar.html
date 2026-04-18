@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منتجات التوثيق الرقمية </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+  <!-- HEADER / NAVIGATION -->
+  <nav id="navbar">
+    <div class="container">
+      <a href="home-ar.html" class="logo">
+        <img src="assets/images/logo_png.webp" alt="التوثيق">
+      </a>
+      <ul>
+        <li><a href="home-ar.html">الرئيسية</a></li>
+        <li><a href="blogs-ar.html">المدونة</a></li>
+        <li><a href="profile.html">نبذه عنا</a></li>
+        <!--<li><a href="home-en.html" class="lang-switch">En</a></li>-->
+      </ul>
+      <a href="home-ar.html" class="logo">
+        <img src="assets/images/white__logo.webp" alt="التوثيق">
+      </a>
+    </div>
+  </nav>
+
+<section class="hero" data-aos="fade-up">
+    <div class="container">
+      <h1>منتجات التوثيق الرقمية </h1>
+      <p>استكشف مكتبة من الأبحاث والرؤى والاستراتيجيات حول تدريب القوى العاملة.</p>
+      <!-- <button class="btn-primary">ابدأ الآن</button> -->
+    </div>
+  </section>
+  <section class="products-grid">
+  <div class="container">
+    <div class="article-grid">
+      
+      <article class="post-card" data-aos="fade-up">
+        <div class="badge">مجاني</div>
+        <img src="assets/images/product1.webp" alt="اسم المنتج">
+        <div class="post-content">
+          <h2>دليل استراتيجيات الموارد البشرية 2026</h2>
+          <p>احصل على نسخة حصرية من الدليل الشامل لتطوير الكوادر الوطنية.</p>
+          <button class="download-btn" onclick="openModal('دليل استراتيجيات الموارد البشرية')">تحميل الآن مجاناً</button>
+        </div>
+      </article>
+
+      </div>
+  </div>
+</section>
+
+<div id="downloadModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>تحميل المنتج الرقمي</h3>
+    <p id="productNameText" style="font-weight: bold; color: #9a37d4;"></p>
+    <form id="leadForm">
+      <div class="input-group">
+        <label>الاسم الكامل</label>
+        <input type="text" id="userName" placeholder="أدخل اسمك" required>
+      </div>
+      <div class="input-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="userEmail" placeholder="email@example.com" required>
+      </div>
+      <div class="input-group">
+        <label>المنصب الوظيفي</label>
+        <input type="text" id="userJob" placeholder="مثال: مدير موارد بشرية" required>
+      </div>
+      <button type="submit" class="submit-btn">أرسل لي الرابط فوراً</button>
+    </form>
+  </div>
+</div>
+   
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid" data-aos="fade-up">
+        <div class="footer-brand">
+          <img src="assets/images/logo_png.webp" alt="شعار التوثيق" class="footer-logo">
+          <p>شريكك الموثوق في رحلة التحول والنمو.</p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/tawthiq-sa" target="_blank" rel="noopener" aria-label="لينكدإن">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.facebook.com/Jurehaif" target="_blank" rel="noopener" aria-label="فيسبوك">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/tawthiqsa/" target="_blank" rel="noopener" aria-label="إنستغرام">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://x.com/tawthiqsa" target="_blank" rel="noopener" aria-label="إكس">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="يوتيوب">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>التوثيق. جميع الحقوق محفوظة © 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>

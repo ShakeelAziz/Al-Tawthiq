@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تدريب المدربين - نسخة معاد تصميمها</title>
+  <meta name="description" content="تصميم جديد بالكامل لصفحة تدريب المدربين" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --floral-white: #fbfbf2;
+      --alabaster-grey: #e5e6e4;
+      --dust-grey: #cfd2cd;
+      --silver: #a6a2a2;
+      --taupe: #847577;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Tajawal", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(166, 162, 162, 0.14), transparent 34%),
+        radial-gradient(circle at 12% 0%, rgba(132, 117, 119, 0.14), transparent 28%),
+        linear-gradient(180deg, #252422 0%, #1f1e1d 100%);
+      color: var(--alabaster-grey);
+      line-height: 1.8;
+    }
+
+    .wrap,
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(8px);
+      background: rgba(37, 36, 34, 0.82);
+      border-bottom: none;
+    }
+
+    .top-nav .container {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: auto;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .top-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-nav ul a {
+      text-decoration: none;
+      color: var(--floral-white);
+      border: none;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.95rem;
+    }
+
+    .top-nav ul a:hover {
+      background: rgba(132, 117, 119, 0.26);
+      color: var(--floral-white);
+    }
+
+    .hero {
+      padding: 42px 0 18px;
+    }
+
+    .hero-shell {
+      border: none;
+      border-radius: 24px;
+      padding: 24px;
+      background:
+        linear-gradient(145deg, rgba(64, 61, 57, 0.82), rgba(37, 36, 34, 0.78)),
+        url("./assets/conference.webp") center/cover;
+      background-blend-mode: multiply;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 16px;
+    }
+
+    .hero-main .kicker {
+      display: inline-block;
+      margin: 0 0 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: none;
+      color: #fbfbf2;
+      background: rgba(132, 117, 119, 0.46);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 10px;
+      color: #fbfbf2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
+    }
+
+    .hero-subtitle {
+      margin: 0 0 14px;
+      max-width: 760px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 10px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #847577;
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: rgba(251, 251, 242, 0.18);
+      color: #fbfbf2;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stat {
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(251, 251, 242, 0.24);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #fbfbf2;
+    }
+
+    .zone {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .panel {
+      border: none;
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(64, 61, 57, 0.62);
+    }
+
+    .panel.full {
+      grid-column: 1 / -1;
+    }
+
+    .cards-2,
+    .cards-3 {
+      display: grid;
+      gap: 12px;
+    }
+
+    .cards-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(37, 36, 34, 0.6);
+    }
+
+    .card a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 130px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .showcase-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(37, 36, 34, 0.58);
+    }
+
+    .showcase-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .showcase-item figcaption {
+      padding: 10px;
+      font-size: 0.92rem;
+      color: var(--alabaster-grey);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline .item {
+      border-right: 4px solid #847577;
+      border-radius: 10px;
+      border-top: none;
+      border-left: none;
+      border-bottom: none;
+      padding: 12px;
+      background: rgba(64, 61, 57, 0.6);
+    }
+
+    ul {
+      margin: 0;
+      padding-right: 18px;
+    }
+
+    .price strong {
+      color: #847577;
+    }
+
+    details {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      background: rgba(37, 36, 34, 0.66);
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--floral-white);
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--alabaster-grey);
+      padding: 24px 0 28px;
+    }
+
+    @media (max-width: 980px) {
+
+      .hero-grid,
+      .zone,
+      .cards-2,
+      .cards-3,
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="top-nav">
+    <div class="container">
+      <a class="logo" href="home-ar.html">
+        <img src="assets/images/logo_png.webp" alt="Al Tawthiq" />
+      </a>
+      <ul>
+        <li><a href="about-jure-ar.html">عن جوري القحطاني</a></li>
+
+        <li><a href="home-ar.html">الرئيسية</a></li>
+        <li><a href="profile.html">نبذة عنا</a></li>
+      </ul>
+      <a class="logo" href="home-ar.html">
+        <img src="assets/images/white__logo.webp" alt="Al Tawthiq" />
+      </a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-shell">
+        <div class="hero-grid">
+          <article class="hero-main">
+            <p class="kicker">جوري القحطاني في الدورة التدريبية المتكاملة</p>
+            <h1>تدريب المدربين</h1>
+            <p class="hero-subtitle">البرنامج الأقصى لسيادة التدريب والإلقاء</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#pricing">احجز مقعدك الآن</a>
+              <a class="btn btn-ghost" href="#axes">استعرض المحاور</a>
+            </div>
+          </article>
+          <aside class="hero-side">
+            <div class="stat"><strong>48 ساعة</strong><span>تدريب تفاعلي مباشر</span></div>
+            <div class="stat"><strong>6 أيام</strong><span>رحلة تدريبية مكثفة</span></div>
+            <div class="stat"><strong>شهادتان</strong><span>اعتمادات مهنية معتمدة</span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone">
+      <article id="about" class="panel">
+        <h2>ما هي دورة "تدريب المدربين"؟</h2>
+        <p>هي تجربة تدريبية استثنائية تهدف إلى تطويرك كمدرب محترف قادر على التأثير، الإلهام، وإحداث فرق حقيقي في حياة
+          الآخرين. بقيادة جوري القحطاني، ستتعلم كيف تقدم عروضاً مقنعة، تدير ورش عمل ديناميكية، وتصمم برامج تدريبية فعالة
+          مبنية على أحدث الأساليب العالمية.</p>
+      </article>
+      <article class="panel">
+        <h2>فلسفة تدريب المدربين</h2>
+        <p>نحن لا نؤمن بتدريب المدربين على مجرد "الإلقاء"، بل نصنع قادة مؤثرين. فلسفتنا تقوم على الدمج بين العمق
+          المعرفي، التأثير النفسي والسلوكي، الحضور القيادي الملهم، والاستخدام الاستراتيجي لأدوات التدريب الحديثة.</p>
+      </article>
+
+      <article id="levels" class="panel full">
+        <h2>مستويات تدريب المدربين</h2>
+        <div class="timeline">
+          <div class="item">
+            <h3>المستوى التأسيسي</h3>
+            <p>مسار تأسيسي لبناء المدرب من الصفر إلى الاحتراف. تركيز على مهارات الإلقاء، العرض، التواصل، ومواجهة الجمهور
+              بثقة.</p>
+          </div>
+          <div class="item">
+            <h3>المستوى المتقدم</h3>
+            <p>مسار احترافي للتطبيق المتقدم والتأثير العملي. تعمق في التدريب الشخصي، التيسير، وقياس نتائج التدريب.</p>
+          </div>
+        </div>
+        <p>المجموع: 6 أيام × 7 ساعات تدريب حي = 48 ساعة تفاعلية</p>
+      </article>
+
+      <article id="axes" class="panel full">
+        <h2>محاور البرنامج</h2>
+        <div class="cards-3">
+          <div class="card"><a href="./book-details.html?item=day-1"><strong>Day 1</strong><span>مهارات
+                الإلقاء</span><img src="./assets/img_book.png" alt="Day 1" /></a></div>
+          <div class="card"><a href="./book-details.html?item=day-2"><strong>Day 2</strong><span>مهارات العرض</span><img
+                src="./assets/img_book.png" alt="Day 2" /></a></div>
+          <div class="card"><a href="./book-details.html?item=day-3"><strong>Day 3</strong><span>مهارات
+                التدريب</span><img src="./assets/img_book.png" alt="Day 3" /></a></div>
+          <div class="card"><a href="./book-details.html?item=day-4"><strong>Day 4</strong><span>التدريب
+                والتوجيه</span><img src="./assets/img_book.png" alt="Day 4" /></a></div>
+          <div class="card"><a href="./book-details.html?item=day-5"><strong>Day 5</strong><span>مهارات
+                التيسير</span><img src="./assets/img_book.png" alt="Day 5" /></a></div>
+          <div class="card"><a href="./book-details.html?item=day-6"><strong>Day 6</strong><span>قياس نتائج
+                التدريب</span><img src="./assets/img_book.png" alt="Day 6" /></a></div>
+        </div>
+      </article>
+
+      <article class="panel full">
+        <h2>صور من بيئات التدريب والتطوير</h2>
+        <p>
+          نماذج بصرية لتدريب وتطوير الموظفين في القطاعين الحكومي والخاص داخل المملكة
+          العربية السعودية، بما يشمل ورش القيادة، برامج التأهيل، واجتماعات التطوير المؤسسي.
+        </p>
+        <div class="showcase-grid">
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+              alt="برنامج تدريب موظفين في جهة خاصة بالسعودية" loading="lazy" />
+            <figcaption>ورش تدريب الموظفين في القطاع الخاص.</figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+              alt="تطوير القيادات في جهة حكومية سعودية" loading="lazy" />
+            <figcaption>تطوير القيادات والإشراف في القطاع الحكومي.</figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80"
+              alt="جلسة تدريب وتوجيه مهني للموظفين" loading="lazy" />
+            <figcaption>جلسات تدريب وتوجيه مهني عالية التأثير.</figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80"
+              alt="اجتماع تطوير فرق العمل في مؤسسة سعودية" loading="lazy" />
+            <figcaption>بناء فرق العمل ورفع كفاءة الأداء المؤسسي.</figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80"
+              alt="مبادرات التأهيل الوظيفي في القطاع العام" loading="lazy" />
+            <figcaption>مبادرات التأهيل الوظيفي في الجهات العامة.</figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="تدريب تعاوني للموظفين في بيئة عمل سعودية" loading="lazy" />
+            <figcaption>تدريب تعاوني يعزز ثقافة التطوير المستمر.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="panel full">
+        <h2>اعتمادات ومخرجات الدورة</h2>
+        <div class="cards-2">
+          <div class="card">
+            <h3>اعتمادات رسمية</h3>
+            <ul>
+              <li>الدورة التدريبية المتكاملة بشهادتين معتمدتين.</li>
+              <li>معتمدة من المؤسسة العامة للتدريب التقني والمهني.</li>
+              <li>مصرح بها من المركز الوطني للتعليم الإلكتروني.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>قيمة عملية مباشرة</h3>
+            <ul>
+              <li>6 أيام تدريب حي بواقع 48 ساعة تفاعلية.</li>
+              <li>أدوات تطبيقية لبناء برامج تدريبية مؤثرة.</li>
+              <li>أساليب المدربين العالميين لاستخراج أفضل ما في الآخرين.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel full">
+        <h2>تفصيل المهارات المتقدمة</h2>
+        <div class="cards-2">
+          <div class="card">
+            <h3>مهارات الإلقاء (Public Speaking)</h3>
+            <p>تركيز على تجاوز رهبة الجمهور، بناء الثقة، وصناعة تواصل إنساني أصيل يوصل الرسالة بوضوح وتأثير.</p>
+          </div>
+          <div class="card">
+            <h3>مهارات العرض (Presentation Skills)</h3>
+            <p>تحويل المحتوى إلى عروض جذابة تحفظ انتباه الجمهور من البداية حتى النهاية.</p>
+          </div>
+          <div class="card">
+            <h3>مهارات التدريب (Training Skills)</h3>
+            <p>تأسيس المدرب على إعداد المادة التدريبية، إدارة التفاعل، وقيادة جلسات تدريبية عملية مؤثرة.</p>
+          </div>
+          <div class="card">
+            <h3>Coaching & Mentoring</h3>
+            <p>تنمية قدرة المدرب على مرافقة المتدربين نحو نتائج واقعية عبر التوجيه الفردي والمتابعة المنظمة.</p>
+          </div>
+          <div class="card">
+            <h3>مهارات التيسير (Facilitation Skills)</h3>
+            <p>التيسير كمهارة قيادية لقيادة المجموعات نحو الحلول، الإجماع، واتخاذ القرارات.</p>
+          </div>
+          <div class="card">
+            <h3>قياس نتائج التدريب (Measuring Training Results)</h3>
+            <p>تصميم تقييمات دقيقة تثبت أثر التدريب وتحول نتائجه إلى قرارات تطوير قابلة للقياس.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>قالوا عن الدورة</h2>
+        <div class="cards-2">
+          <blockquote class="card">"حلو إنك تكون مدرب ناجح... مالك إلا تدريب المدربين."<cite>— ممدوح باجعفر</cite>
+          </blockquote>
+          <blockquote class="card">"الدورة استثمار ناجح في العقل، بعدها تنفتح أبواب كثيرة."<cite>— Shooda</cite>
+          </blockquote>
+        </div>
+      </article>
+
+      <article id="faq" class="panel">
+        <h2>الأسئلة الشائعة</h2>
+        <details>
+          <summary>لمن هذه الدورة؟</summary>
+          <p>لكل من يريد الانتقال من أساليب التدريب التقليدية إلى تدريب احترافي مؤثر، ويرغب في تنمية حضوره وقيمته في
+            السوق.</p>
+        </details>
+        <details>
+          <summary>هل الدورة معتمدة؟</summary>
+          <p>نعم، البرنامج بشهادتين معتمدتين ومصرح من الجهات الرسمية المذكورة في الصفحة.</p>
+        </details>
+      </article>
+    </section>
+
+    <section class="section css-7j1r40" data-guid="2dc5b7de-f9b8-1b59-1c38-7c6804412028">
+      <div class="container" id="برشور">
+        <div class="layout flex flex--12" data-guid="a0d89b6a-10c8-bb2d-a238-8f0656162da8">
+          <div class="column flex__item--md-12 flex__item--xs-12 css-l1q1o"
+            data-guid="5288d398-d898-53a8-1daa-994862b8e363">
+            <div class="inner-column css-eeduzr">
+              <div class="row flex flex--12 css-47r3vg">
+                <div class="composite flex__item--md-12 flex__item--xs-12 css-8x0d4x">
+                  <div class="inner-composite flex flex--12">
+                    <div class="widget-column flex__item--md-12 flex__item--xs-12">
+                      <div class="widget-row flex flex--12">
+                        <div class="flex__item--md-12 flex__item--xs-12">
+                          <div data-widget-id="ed381a86-2768-9b38-902b-1aafd85d7c02" class="widget">
+                            <div data-widget-type="LpHtmlReact"> <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/altawthiq/profile_ar/" title="profile_ar" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container"> التوثيق. جميع الحقوق محفوظة © 2026</div>
+    </footer>
+  </main>
+</body>
+
+</html>

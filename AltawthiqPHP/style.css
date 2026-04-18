@@ -1,0 +1,17 @@
+/*
+ * Theme Name: Al Tawthiq
+ * Theme URI: https://www.altawthiq.com
+ * Description: شركة تدريب واستشارات متخصصة في تطوير الموارد البشرية | Professional Training Company Theme
+ * Author: Al Tawthiq
+ * Author URI: https://www.altawthiq.com
+ * Version: 1.0.0
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: altawthiq
+ * Domain Path: /languages
+ * Requires at least: 5.0
+ * Requires PHP: 7.4
+ * Tags: training, arabic, rtl, responsive, business, corporate, multilingual
+ */
+
+@import url('./css/style.css');

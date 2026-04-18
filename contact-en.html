@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Book a Demo | Al Tawthiq</title>
+  <title>Book a Contractual Offer | Al Tawthiq</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Fonts (same as site) -->
@@ -142,12 +142,12 @@
       <nav id="navbar">
         <div class="container">
           <a href="home-en.html" class="logo">
-            <img src="assets/images/logo_png.png" alt="Al Tawthiq">
+            <img src="assets/images/logo_png.webp" alt="Al Tawthiq">
           </a>
           <ul>
             <li><a href="home-en.html">Home</a></li></ul>
           <a href="home-en.html" class="logo">
-            <img src="assets/images/white__logo.png" alt="Al Tawthiq">
+            <img src="assets/images/white__logo.webp" alt="Al Tawthiq">
           </a>
         </div>
       </nav>
@@ -167,22 +167,22 @@
 
                 <div class="form-group">
                   <label>Company Name</label>
-                  <input type="text" placeholder="Your company name" required>
+                  <input type="text" name="company" placeholder="Your company name" required>
                 </div>
 
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="email" placeholder="company@email.com" required>
+                  <input type="email" name="email" placeholder="company@email.com" required>
                 </div>
 
                 <div class="form-group">
                   <label>City</label>
-                  <input type="text" placeholder="City" required>
+                  <input type="text" name="city" placeholder="City" required>
                 </div>
 
                 <div class="form-group">
                   <label>Number of Employees</label>
-                  <select required>
+                  <select name="employees" required>
                     <option value="">Select range</option>
                     <option>0 – 50</option>
                     <option>50 – 100</option>
@@ -194,17 +194,17 @@
 
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" placeholder="Full name" required>
+                  <input type="text" name="name" placeholder="Full name" required>
                 </div>
 
                 <div class="form-group">
                   <label>Phone</label>
-                  <input type="tel" placeholder="Phone Number" required>
+                  <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
 
                 <div class="form-group">
                   <label>Preferred Meeting Type</label>
-                  <select required>
+                  <select name="meeting" required>
                     <option value="">Select meeting type</option>
                     <option>Office</option>
                     <option>Remotely</option>
@@ -213,7 +213,7 @@
                 
                 <div class="form-group">
                   <label>Position</label>
-                  <input type="text" placeholder="Your Position" required>
+                  <input type="text" name="position" placeholder="Your Position" required>
                 </div>
               </div>
 
@@ -231,6 +231,7 @@
               </div>
               <div class="submit-wrap">
                 <button type="submit">Submit Request</button>
+                <p id="contactFormMessage" role="status" aria-live="polite" style="margin-top: 12px;"></p>
               </div>
 
             </form>
@@ -250,6 +251,53 @@
       <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
       <script src="main.js"></script>
       <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          const form = this;
+          const checkbox = document.getElementById('termsCheckbox');
+          const errorDiv = document.getElementById('checkboxError');
+          const messageEl = document.getElementById('contactFormMessage');
+          const submitButton = form.querySelector('button[type="submit"]');
+
+          messageEl.textContent = '';
+          messageEl.style.color = '';
+
+          if (!checkbox.checked) {
+            errorDiv.style.display = 'block';
+            return;
+          }
+
+          errorDiv.style.display = 'none';
+          submitButton.disabled = true;
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch('https://altawthiqsa.app.n8n.cloud/webhook-test/signup-form', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+              throw new Error('Request failed');
+            }
+
+            messageEl.textContent = 'Your request has been submitted successfully.';
+            messageEl.style.color = '#198754';
+            form.reset();
+          } catch (error) {
+            messageEl.textContent = 'Something went wrong. Please try again.';
+            messageEl.style.color = '#dc3545';
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
           const checkbox = document.getElementById('termsCheckbox');
           const errorDiv = document.getElementById('checkboxError');
@@ -260,7 +308,7 @@
           } else {
             errorDiv.style.display = 'none';
           }
-        });
+        }, true);
 
         document.getElementById('termsCheckbox').addEventListener('change', function() {
           const errorDiv = document.getElementById('checkboxError');
